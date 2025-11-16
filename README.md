@@ -1,111 +1,158 @@
-## 🍕 Pizza Sales SQL Analytics Project
+## 🍕 Pizza Sales Analytics Project
 
-An end-to-end **SQL case study** analyzing a pizza restaurant’s sales data to uncover key business insights.
+**SQL + Power BI End-to-End Case Study**
 
-This project simulates real-world scenarios involving revenue analysis, ordering behavior, product demand, ingredient usage, and sales trends.
+This project analyzes pizza restaurant sales data using both SQL (PostgreSQL/MySQL) and Power BI, uncovering actionable insights on revenue, demand patterns, category performance, customer behavior, and product strategy.
 
 ---
 
 ## 🚀 Project Overview
 
-The goal of this project was to design and query a structured SQL database for a pizza outlet’s daily sales operations.
+The goal of this project was to:
 
-I created a **fact table** (`pizza_sales`) and wrote SQL queries to answer **20+ business questions**—ranging from KPIs to trend analysis and category contributions.
+1.  **Build a complete SQL analytics solution** to answer real business questions.
+2.  **Design an interactive Power BI dashboard** for data storytelling.
+3.  Combine both approaches to simulate a real-world retail analytics project.
 
 The analysis covers:
 
-* **Total revenue** & **order performance**
-* Daily and monthly **sales trends**
-* Pizza category & size **contribution**
-* Product-level **revenue analysis**
-* Ingredient usage trends
-* High-value customer order behavior
-* **Cumulative revenue** tracking
+* 💰 **Revenue** & order performance
+* 📈 **Weekly & monthly demand trends**
+* 🍕 **Best/worst selling pizzas**
+* 🧀 Category & size-level **contribution**
+* 🕒 **Busiest days & hours**
+* 🧮 **Advanced metrics** (AOV, Avg pizza/order, running totals)
 
 ---
 
-## 📂 Database Schema
+## 🏪 Business Problem
 
-### Table Used:
-`pizza_sales`
+A Pizza Company wants to understand its:
+* Declining sales in certain months
+* Saturated menu performance
+* Inconsistent order volumes across days
+* Variation in demand for pizza categories & sizes
+* Need for data-driven decision making
 
-* (pizza\_id, order\_id, pizza\_name\_id, quantity, order\_date, order\_time, unit\_price, total\_price, pizza\_size, pizza\_category, pizza\_ingredients, pizza\_name)
+Management asked:
+> “Provide us clear insights on what is selling, when it is selling, and how we can optimize our menu & pricing.”
 
-### Key Relationships (business assumed):
-* `pizza_name_id` → `pizza_name` (Pizza Master Mapping)
-* `pizza_category` groups pizzas into food types
-* `pizza_size` determines pricing differences
+## 🎯 Project Goals
 
-### Schema Diagram (Conceptual)
-🧱 One **fact table** containing all pizza transactions — suitable for real-world fast-food analytics use cases.
+### Using SQL
+* Build database
+* Calculate revenue, total pizzas sold, average order value, trends
+* Identify top/bottom sellers
+* Category & size contribution
+* Cumulative revenue & ingredient usage
 
----
-
-## 🛠 Skills & SQL Concepts Used
-
-* **SQL Table Creation** & Data Modeling
-* **Aggregations** (`SUM`, `COUNT`, `AVG`)
-* **Date Functions** (`to_char`, `date_trunc`, `EXTRACT`)
-* **Window Functions** (Running Totals)
-* **GROUP BY, HAVING, ORDER BY**
-* Subqueries
-* **String Functions** (`string_to_array`, `unnest`)
-* Business **KPI Querying**
-* **Trend** & **Contribution Analysis**
+### Using Power BI
+* Create a dynamic dashboard
+* Give management an easy-to-read performance summary
+* Provide visual storytelling
+* Highlight key insights & business recommendations
 
 ---
 
-## 🔍 Business Questions Solved
+## 🧱 Database Schema (SQL)
 
-### Easy to Medium
-* 📊 **Total Revenue**
-* 🍕 **Total Pizzas Sold**
-* 🧾 **Total Orders**
-* 💲 **Average Order Value (AOV)**
-* 📦 **Average pizzas per order**
-* 📆 **Daily order trend**
-* 🗓 **Monthly sales trend**
-* 🍕 **Revenue by pizza category**
-* 📏 **Revenue by pizza size**
-* 🔥 **Top 5 revenue-generating pizzas**
-* 🏆 **Top 5 most-ordered pizzas**
+| Column | Description |
+| :--- | :--- |
+| `pizza_id` | Pizza item ID |
+| `order_id` | Unique order ID |
+| `pizza_name_id` | Category-level pizza ID |
+| `quantity` | Unit sold |
+| `order_date` | Date of order |
+| `order_time` | Time of order |
+| `unit_price` | Price of individual pizza |
+| `total_price` | Quantity × Price |
+| `pizza_size` | Size (S, M, L, XL…) |
+| `pizza_category` | Category (Classic, Veggie, Supreme, Chicken) |
+| `pizza_ingredients` | Ingredients list |
+| `pizza_name` | Full pizza name |
 
-### Medium to Hard
-* 💰 **High-value customer orders** (> $50)
-* 📈 **Cumulative daily revenue**
-* 🧀 **Ingredient usage** across all pizzas
-* 📊 **Percentage revenue contribution** by category
-* 📏 **Revenue share** by pizza size
-* 🗓 **Quarterly sales percentage**
-* 🔽 Finding **least/most performing pizzas** (Revenue/Orders)
-
-### Complex Analysis
-* 🍕 Identifying **best-selling pizzas by type/size**
-* 🧠 Understanding **ingredient demand** for inventory planning
-* 📈 **Trend forecasting** from cumulative revenue
-* 🏆 Identifying **premium customers** from high-value orders
-* 📦 **Category vs Size** performance comparison
+## 🛠 SQL Concepts Used
+* **GROUP BY / Aggregations**
+* **Window Functions** (`RANK`, `RUNNING TOTAL`)
+* **Subqueries**
+* **Date Functions**
+* **String Functions** (for ingredient analysis)
+* Percentage contribution calculations
+* Data cleaning & type adjustments
 
 ---
 
-## 🧪 Sample Insights
+## 🧮 Key SQL Metrics & Analysis Performed
 
-✔ **Large & Medium pizzas** generate the highest revenue share, suggesting customers prefer bigger portions.
-
-✔ **Weekends** show higher order volumes, indicating stronger weekend demand.
-
-✔ **Top 5 pizzas** contribute a major portion of total sales, ideal for combo offers or promotions.
-
-✔ Ingredient analysis shows frequent demand for **cheese, pepperoni, and mushrooms**, helping optimize inventory.
-
-✔ **High-value orders** (>$50) represent premium customers suitable for targeted loyalty campaigns.
-
-✔ **Quarterly trends** highlight seasonal peaks, useful for staffing and inventory planning.
+* ✔️ **Total Revenue**
+* ✔️ **Total Pizzas Sold**
+* ✔️ **Total Orders**
+* ✔️ **Average Order Value**
+* ✔️ **Average Pizzas per Order**
+* ✔️ **Daily & Monthly Sales Trend**
+* ✔️ **Top 5 Pizzas by** Revenue, Quantity, Orders
+* ✔️ **Worst 5 Pizzas by** Revenue, Quantity, Orders
+* ✔️ **Revenue by** Category, Size, Month
+* ✔️ **Ingredient-level Usage** (Using `unnest(string_to_array())`)
 
 ---
 
-## 📎 Project Files
+## 📊 Power BI Dashboard Summary
 
-* **`Pizza_Sales_Queries.sql`** → All SQL queries including KPIs, trends, and analysis
-* **`pizza_sales.csv`** → Dataset used for the analysis
-  
+| Metric | Value |
+| :--- | :--- |
+| Total Revenue | $817.86K |
+| Total Pizzas Sold | 49,574 |
+| Total Orders | 21,350 |
+| Average Order Value | $38.31 |
+| Average Pizzas/Order | 2.32 |
+
+### 📅 Busiest Days & Times
+* **Days:** Friday & Saturday show the highest orders (**weekend peak**).
+* **Monthly:** Highest orders occur in **January & July**. Lowest demand seen in September–October.
+
+### 🧀 Category Performance
+| Category | % Sales | Total Pizzas Sold |
+| :--- | :--- | :--- |
+| Classic | 26.91% | 14,888 |
+| Supreme | 25.46% | 11,987 |
+| Veggie | 23.96% | 11,649 |
+| Chicken | 23.68% | 11,050 |
+> 📌 **Classic** category is the top performer.
+
+### 🍕 Sales by Pizza Size
+* **Large (L)** contributes the most: **45.89%**
+* Medium (M): 30.49%
+* Small (S): 21.77%
+> 📌 **Large** pizzas are the primary revenue driver.
+
+### 🔥 Top Performers
+* **Best Pizza by Revenue:** The Thai Chicken, The Barbecue Chicken, The California Chicken
+* **Best Pizza by Quantity:** The Classic Deluxe, The Barbecue Chicken, The Hawaiian
+* **Best Pizza by Total Orders:** The Classic Deluxe, The Hawaiian
+
+### 🧊 Worst Performers
+* **Worst by Revenue & Quantity:** The Brie Carre, The Mediterranean
+* **Worst by Revenue (2nd):** The Spinach Supreme
+
+---
+
+## 📘 Storytelling Insight Summary for README
+
+⭐ **Key Findings**
+
+* **Weekend rush** dominates sales → Add promotions or combos on Friday/Saturday.
+* **January & July** are peak months → Seasonal marketing opportunity.
+* **Classic category** contributes most revenue → Should be prioritized in marketing.
+* **Large pizzas** contribute nearly half of all revenue → Strong upsell opportunity.
+* **Brie Carre** is consistently low-performing → Candidate for removal or rebranding.
+* **Evening hours (6 PM – 9 PM)** show maximum orders → Staff & kitchen planning insight.
+
+---
+
+## 📎 Project Files in Repository
+
+* `pizza_sales.sql` — All SQL queries
+* `pizza_dataset.csv` — Source dataset
+* `PowerBI_Pizza_Sales.pbix` — Dashboard
+* `README.md` — Documentation
